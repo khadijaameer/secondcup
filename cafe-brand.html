@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAFE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    #ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color:  rgb(240, 198, 120);
+}
+
+#li {
+float: left;
+}
+
+#li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+#li a:hover {
+background-color:burlywood;
+}
+
+  .fa {
+  padding: 20px;
+  
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  display: flex;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+  .fa-instagram {
+  background:  rgb(240, 198, 120);
+  color: black;
+}
+  .fa-facebook {
+  background:  rgb(240, 198, 120);
+  color: black;
+  padding-right: ;
+}
+.fa-youtube {
+  background:  rgb(240, 198, 120);
+  color: black;
+  padding-right:;
+}
+.fa-linkedin {
+  background: rgb(240, 198, 120);
+  color: black;
+}
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.iframely-embed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: white;
+}
+
+#app {
+  // opacity: 0 !important;
+  // visibility: hidden;
+  z-index: 100;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  padding-bottom: 4vmin;
+  height: 109vh;
+  width: 100%;
+  background: #ede8e2;
+  color: #3a3535;
+}
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
+
+.title {
+  padding-left: 1em;
+  grid-column: 1 / -1;
+  grid-row: 1;
+
+  font-family: "Prata", serif;
+  font-size: 8vw;
+  width: 100%;
+  z-index: 2;
+
+  // start
+
+  > .title-inner {
+    display: inline-block;
+  }
+}
+
+@keyframes text-clip {
+  from {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes outer-left {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes inner-left {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.cafe,
+.mozart {
+  animation: outer-left 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both;
+  // outline: 1px solid red;
+}
+
+// [class*='inner'] {
+//   outline: 1px solid blue;
+// }
+
+.title-inner {
+  display: inline-block;
+  animation: inner-left 1s 1s ease both;
+}
+
+.cafe-inner {
+  display: inline-block;
+  animation: inner-left 1s 1s ease both,
+    text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+.mozart-inner {
+  animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+.title {
+  animation: outer-left 1s 1s ease both;
+}
+
+.cafe {
+  // start
+  > .cafe-inner {
+    display: inline-block;
+  }
+}
+
+.mozart {
+  display: inline-block;
+}
+
+.image {
+  grid-row: 1;
+  grid-column: 2;
+  margin-left: -2rem;
+  opacity: 0.7;
+
+  animation: image-in 1s cubic-bezier(0.5, 0, 0.1, 1) 2s backwards;
+
+  @keyframes image-in {
+    from {
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// Replay animation!
+body:active * {
+  animation: none !important;
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid" style="background-color:rgb(240, 198, 120);">
+          <div> <nav class="navbar bg-body-">
+              <a class="navbar-brand" href="#">
+                <img src=" https://i.ibb.co/8P37Nrp/Second-Cup-Logo-Square-Website.webp" alt="Second-Cup-Logo-Square-Website" border="0" alt=" width="60" height="54">  <b>SECOND CUP COFEE</b>
+              </a></div>
+
+          <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Second cup</h5>
+             
+
+
+
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" style="background-color:peru ;">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about2.html">About us<a>                </li> 
+                    <li class="nav-item">
+                     
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="contact.html">Contact us</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="careers.html">Careers</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item active" href="cafe-brand.html">Cafe</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                     </li>
+                     <li><a class="dropdown-item " href="https://order.secondcup.pk/">Order-now</a></li>
+                  </ul>
+                </li>
+                
+              </ul>
+            </li>
+              </ul>
+             
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </nav>
+</div>
+<br>
+<br><br>
+
+
+
+ <!-- <div class="iframe-embed" style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe src="https://dribbble.com/shots/15379368-Quick-Animation-Experiment/player" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen allow="encrypted-media"></iframe></div> -->
+
+ <div id="app" style="height: ;">
+  <div class="title" style="height: ;">
+    <div class="title-inner">
+      <div class="cafe" style="height: ;">
+        <div class="cafe-inner">OUR</div>
+      </div>
+      <div class="mozart">
+        <div class="mozart-inner">STORY</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="image">
+    <img src='https://images.unsplash.com/photo-1616362355051-6a9f8c434fff?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzE0MTYzNQ&ixlib=rb-1.2.1&q=80&w=800&h=600' alt=''>
+  </div>
+</div>
+
+<script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+        <br><br><br>
+<br><br>
+<div class="container"><img style="width: 100%;" src="https://i.ibb.co/fGvxKWJ/TIMELINEv2.webp" alt=""></div>
+<br>
+<div class="container"><img style="width: 100%;" src="https://i.ibb.co/J7xVPGs/cleanlabelbanner-01-01.webp" alt=""></div>
+<br>
+<div class="container"><img style="width: 100%;" src="https://i.ibb.co/Fm8x03V/CORPORATESUSTAINABILITY.webp" alt=""></div>
+<br>
+<div class="container"><img style="width: 100%;" src="https://i.ibb.co/yXVfCK1/logos.webp" alt=""></div>
+<br>
+<div class="container">
+  <h1 style="margin-left: px;text-align: center;font-size: 50px;">OUR SOCIAL RESPONSIBILITY</h1>
+  <br>
+  <div><p style="font-size: 20px;"> At Second Cup, in order to deliver the best coffee experience we work alongside our producers and guests, on a responsible coffee growing environment to ensure the outmost respect and dignity. All of our coffee producers provide a safe work environment and employees are compensated in a fair, equitable manner.
+
+  </p></div>
+  </div>
+ 
+<br>
+
+<div style="height: 300px;background-color: rgb(240, 198, 120);">
+    <div style="margin-bottom: -30px;height: 200px;" class="fade-in">
+   <div class=" flex-column flex-sm-row justify-content-between py-4 my-4 border-top" style="background-color:  rgb(240, 198, 120);;height:180px;margin-bottom: -200px;">
+    <div class="container" style="display: flex;margin-left: 3px;">
+   <div style="margin-left: -10px;"><a href="https://play.google.com/store/apps/details?id=com.blink.secondcup&hl=en&gl=US&pli=1"><img style="height: 50px;" src="https://i.ibb.co/ncyzNN4/google-play-btn-300x89.webp" alt=""></a></div>
+   <div style="margin-left: 5px;"><a href="https://apps.apple.com/tt/app/second-cup-pakistan/id1593023736"><img style="height: 50px;" style="height: 90px;" src="https://i.ibb.co/fYz9F3N/apple-store-btn.webp" alt="">
+   </a></div>
+    </div>
+     <div style="margin-left: -20pxpx;"><ul class="list-unstyled d-flex" style="margin-top: -15px;height:; px;margin-bottom: px;margin-lef;50px">
+       <li class="ms-3"><a class="link-body-emphasis" href="https://www.instagram.com/reel/C-16PTtuCOd/" class="fa fa-instagram"><svg class="bi" width="24" height="24"><use xlink:href="https://www.instagram.com/reel/C-16PTtuCOd/" class="fa fa-instagram"></use></svg><a href="https://www.instagram.com/reel/C-16PTtuCOd/" class="fa fa-instagram"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg><a href="https://www.facebook.com/SecondCupPakistan" class="fa fa-facebook"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg><a href="https://www.youtube.com/@secondcuppakistan8607" class="fa fa-youtube"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg><a href="https://www.linkedin.com/company/second-cup-pakistan/?originalSubdomain=pk" class="fa fa-linkedin"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg><a href="" class="fab fa-google-play"></a></a></li>
+     
+     </ul></div>
+     <p style="margin-left:5px ;color: black;">© 2024 Company, Inc. All rights reserved.</p>
+     </div>
+          
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
