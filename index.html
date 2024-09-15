@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second-cup Pakistan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <style>
+#ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color:  rgb(240, 198, 120);
+}
+
+#li {
+float: left;
+}
+
+#li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+#li a:hover {
+background-color:burlywood;
+}
+</style>
+<style>
+  .fa {
+  padding: 20px;
+  
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  display: flex;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+  .fa-instagram {
+  background:  rgb(240, 198, 120);
+  color: black;
+}
+  .fa-facebook {
+  background:  rgb(240, 198, 120);
+  color: black;
+  padding-right: ;
+}
+.fa-youtube {
+  background:  rgb(240, 198, 120);
+  color: black;
+  padding-right:;
+}
+.fa-linkedin {
+  background: rgb(240, 198, 120);
+  color: black;
+}
+.fa-playstore{
+  background-color: orange;
+  color: black
+ 
+}
+ /* Fade-in animation */
+ .fade-in {
+            opacity: 0;
+            animation: fadeIn 4s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Slide-in animation */
+        .slide-in {
+            transform: translateX(-100%);
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Hover effect */
+        .hover-effect {
+            transition: transform 0.3s;
+        }
+
+        .hover-effect:hover {
+            transform: scale(1.05);
+        }
+        @keyframes rotateImage {
+          0%{
+            transform: rotate(0deg);
+          }
+          100%{
+            transform: rotate(360deg);
++66666666+        }
+          }
+.image{
+  animation:rotateImage 4s linear
+  infinite;/*4s duration,linear timing,infinite loop*/
+}
+#div {
+  transform: perspective(1500px) rotateY(15deg);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  transition: transform 1s ease 0s;
+
+  &:hover {
+    transform: perspective(3000px) rotateY(5deg);
+  }
+}
+#ani {
+  transform:
+    rotateX(51deg)
+    rotateZ(43deg);
+  transform-style: preserve-3d;
+  border-radius: 32px;
+  box-shadow:
+    1px 1px 0 1px #f9f9fb,
+    -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+    28px 28px 28px 0 rgba(34, 33, 81, 0.25);
+  transition:
+    .4s ease-in-out transform,
+    .4s ease-in-out box-shadow;
+
+  &:hover {
+    transform:
+      translate3d(0px, -16px, 0px)
+      rotateX(51deg)
+      rotateZ(43deg);
+    box-shadow:
+      1px 1px 0 1px #f9f9fb,
+      -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+      54px 54px 28px -10px rgba(34, 33, 81, 0.15);
+  }
+}
+// todo: heavy refactoring
+
+body {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	height: 100vh;
+	
+	overflow: hidden;
+	background: #dadada;
+	
+	@media screen and (max-width: 1000px) {
+		transform: scale(0.9);
+	}
+	
+	@media screen and (max-width: 600px) {
+		transform: scale(0.6);
+	}
+}
+
+@function ease($t, $b, $c, $d) {
+	// https://spicyyoghurt.com/tools/easing-functions
+	// sine ease-out
+	@return (-1 * $c) / 2 * (cos($PI * $t / $d) - 1) + $b;
+}
+
+@mixin rotated-text($num-letters: 14, $angle-span: 360deg, $kern: ()) {
+	$angle-per-char: $angle-span / $num-letters;
+	@for $i from 0 through $num-letters {
+		$angle: $angle-per-char * $i;
+		@if (map-has-key($kern, $i)) { $angle: map-get($kern, $i); }
+		
+		& > *[data-idx='#{$i}'] {
+			height: 245px;
+			transform: rotate($angle) scaleX(0.95);
+			transform-origin: bottom center;
+			line-height: 0;
+		}
+	}
+}
+
+.text {
+	font-size: 6.5rem;
+	font-family: Kanit, sans-serif;
+	text-transform: uppercase;
+
+	color: white;
+	text-stroke: 2px var(--shadow-color, #282828);
+	-webkit-text-stroke: 2px var(--shadow-color, #282828);
+	letter-spacing: 3px;
+	transform: scaleX(0.5);
+	
+	$shadows: 30;
+	$steps: 25;
+	animation: stagger 2.5s steps($steps) alternate infinite;
+
+	@keyframes stagger {
+		// for each time-step ($i/$step) of the animation...
+		@for $i from 0 through $steps {
+			$timestep: $i / $steps;
+			
+			// generate the layer of text shadows for each step of
+			// the anim, placing each layer at some x-position using
+			// an easing fn for the current time-step
+			$text-shadow: null;
+			@for $j from 1 through $shadows {
+				$shadowstep: $j / $shadows;
+				
+				$text-shadow: (
+					$text-shadow 
+					#{ease($timestep, (-10px*$shadowstep), (20px*$shadowstep), 1)} (0.3px*$j) var(--shadow-color, #282828)
+					#{if($j != $shadows, ',', '')}
+				)
+			}
+			
+			#{$timestep * 100}% {
+				text-shadow: $text-shadow;
+			}
+		}
+	}
+}
+
+.circular {
+	width: 240px;
+	height: 240px;
+	border-radius: 100%;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(var(--scale, 1));
+	& > * {
+		position: absolute;
+		top: -50%; left: 33%;
+	}
+	
+	@include rotated-text(22, 360deg, (
+		1: 19deg,
+		5: 81deg,
+		6: 99deg,
+		7: 117deg,
+		8: 134deg,
+		10: 154deg,
+		12: 185deg,
+		13: 205deg,
+		15: 238deg,
+		16: 257deg,
+		17: 276deg,
+		21: 337deg
+	));
+	
+	&--solid {
+		--scale: 0.9;
+		--shadow-color: #d5d5d5;
+
+		.text { color: var(--shadow-color); 	}
+	}
+}
+
+.rotate {
+	--delay: 0;
+	
+	animation: rotate 5s ease-in-out alternate infinite;
+	animation-delay: var(--delay);
+	@keyframes rotate {
+		100% { transform: rotate(360deg); }
+	}
+}
+- const word = 'No Stress • No Worry •'
+
+div.rotate{
+	div.circular.circular--solid(style='--shadow-color: #ababab; filter: blur(1px); opacity: 0.7;')
+		each char, i in word.split('')
+			span.text(data-idx=i)= char
+
+div.rotate
+	div.circular
+		each char, i in word.split('')
+			span.text(data-idx=i)= char
+
+}
+*{transition:.5s}
+
+@keyframes turner{
+  0%   { transform:rotateY(0deg); }
+  10%   { transform:rotateY(0deg); }
+  50% { transform:rotateY(360deg);}
+  60% { transform:rotateY(360deg);}
+  100% { transform:rotateY(0deg);}
+  100% { transform:rotateY(0deg);}
+}
+#container{
+  position: relative;
+  perspective: 800px;
+  margin:0 auto;
+  width:50%;
+  
+  
+}
+.wrapper {
+  width:400px;
+  height:400px;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.div { /* image is 460px x 460px */
+  width:400px;
+  height:10px; /* 50 divisions */
+  background-image: url(https://i.ibb.co/8P37Nrp/Second-Cup-Logo-Square-Website.webp);
+  background-size: cover;
+  backface-visibility: visible;
+  animation: turner 20s infinite;
+}
+.one {
+  background-position:0 0;
+}
+.one2 {
+  background-position:0 -100%;
+  animation-delay: .1s;
+}
+.one3 {
+  background-position:0 -200%;
+  animation-delay: .2s;
+}
+.one4 {
+  background-position:0 -300%;
+  animation-delay: .3s;
+}
+.one5 {
+  background-position:0 -400%;
+  animation-delay: .4s;
+}
+.one6 {
+  background-position:0 -500%;
+  animation-delay: .5s;
+}
+.one7 {
+  background-position:0 -600%;
+  animation-delay: .6s;
+}
+.one8 {
+  background-position:0 -700%;
+  animation-delay: .7s;
+}
+.one9 {
+  background-position:0 -800%;
+  animation-delay: .8s;
+}
+.one10 {
+  background-position:0 -900%;
+  animation-delay: .9s;
+}
+.one11 {
+  background-position:0 -1000%;
+  animation-delay: 1s;
+}
+.one12 {
+  background-position:0 -1100%;
+  animation-delay: 1.1s;
+}
+.one13 {
+  background-position:0 -1200%;
+  animation-delay: 1.2s;
+}
+.one14 {
+  background-position:0 -1300%;
+  animation-delay: 1.3s;
+}
+.one15{
+  background-position:0 -1400%;
+  animation-delay: 1.4s;
+}
+.one16{
+  background-position:0 -1500%;
+  animation-delay: 1.5s;
+}
+.one17{
+  background-position:0 -1600%;
+  animation-delay: 1.6s;
+}
+.one18{
+  background-position:0 -1700%;
+  animation-delay: 1.7s;
+}
+.one19{
+  background-position:0 -1800%;
+  animation-delay: 1.8s;
+}
+.one20{
+  background-position:0 -1900%;
+  animation-delay: 1.9s;
+}
+.one21{
+  background-position:0 -2000%;
+  animation-delay: 2s;
+}
+.one22{
+  background-position:0 -2100%;
+  animation-delay: 2.1s;
+}
+.one23{
+  background-position:0 -2200%;
+  animation-delay: 2.2s;
+}
+.one24{
+  background-position:0 -2300%;
+  animation-delay: 2.3s;
+}
+.one25{
+  background-position:0 -2400%;
+  animation-delay: 2.4s;
+}
+.one26{
+  background-position:0 -2500%;
+  animation-delay: 2.5s;
+}
+.one27{
+  background-position:0 -2600%;
+  animation-delay: 2.6s;
+}
+.one28{
+  background-position:0 -2700%;
+  animation-delay: 2.7s;
+}
+.one29{
+  background-position:0 -2800%;
+  animation-delay: 2.8s;
+}
+.one30{
+  background-position:0 -2900%;
+  animation-delay: 2.9s;
+}
+.one31{
+  background-position:0 -3000%;
+  animation-delay: 3s;
+}
+.one32{
+  background-position:0 -3100%;
+  animation-delay: 3.1s;
+}
+.one32{
+  background-position:0 -3100%;
+  animation-delay: 3.1s;
+}
+.one33{
+  background-position:0 -3200%;
+  animation-delay: 3.2s;
+}
+.one34{
+  background-position:0 -3300%;
+  animation-delay: 3.3s;
+}
+.one35{
+  background-position:0 -3400%;
+  animation-delay: 3.4s;
+}
+.one36{
+  background-position:0 -3500%;
+  animation-delay: 3.5s;
+}
+.one37{
+  background-position:0 -3600%;
+  animation-delay: 3.6s;
+}
+.one38{
+  background-position:0 -3700%;
+  animation-delay: 3.7s;
+}
+
+
+
+
+
+
+</style>
+</head>
+<body style="background-color:;">
+  
+    <br>
+    <br>
+    <br>
+    <br>
+  <div style="background-color:;">
+   
+        <nav class="navbar bg-body-tertiary fixed-top">
+          <div class="container-fluid" style="background-color:rgb(240, 198, 120);">
+            <div> <nav class="navbar bg-body-">
+                <a class="navbar-brand" href="#">
+                  <img src=" https://i.ibb.co/8P37Nrp/Second-Cup-Logo-Square-Website.webp" alt="Second-Cup-Logo-Square-Website" border="0" alt=" width="60" height="54">  <b>SECOND CUP COFEE</b>
+                </a></div>
+
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Second cup</h5>
+               
+
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body" style="background-color:peru ;">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="second cup.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about2.html">About us<a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="contact.html">Contact us</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="careers.html">Careers</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item " href="cafe-brand.html">Cafe</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                       </li>
+                       <li><a class="dropdown-item " href="https://order.secondcup.pk/">Order-now</a></li>
+                     
+                    </ul>
+                  </li>
+                  
+                </ul>
+              </li>
+                </ul>
+               
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </nav>
+  </div>
+  
+<div id="carouselExampleIndicators" class="carousel slide fade-in">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://i.ibb.co/gvPZ5k8/cov1desk.webp" class="d-block" width="100%" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src=" https://i.ibb.co/JvrKgz1/ccccccc.webp" class="d-block" width="100%" height="" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.ibb.co/ZWzYz5n/gift-basket-web.webp" alt="gift-basket-web" border="0" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+     
+      <h1 style="text-align: center;background-color:;color:;height: 70px;">HOT SELLING</h1>
+      <div style="background-color: ;">
+<div class="container fade-in" style="display: flex;background-color: ;color: white;">
+<div class="row" class="image" id="div">
+  <br>
+
+  <div class="col-md-3" class="img"><img style="height: 300px;width: 400px;" src="https://i.ibb.co/VJKDktN/Club-Sandwich.webp" alt="Club-Sandwich" border="0"><br><b><p style="text-align: center;color: black;">CLUB SANDWICH</p></b></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-3" class="img"><img style="height: 300px;width: 400px;" src="https://i.ibb.co/FJHs719/Hot-Chocolate.webp" alt="Hot-Chocolate" border="0"><br><b><p style="text-align: center;color: black;">COOKIES N CREAM</p></b></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-3" class="img"><img style="height: 300px;width: 350px;" src="https://i.ibb.co/4VP50r3/Hot-Sellings-Portion-Brownie.webp" alt="Hot-Sellings-Portion-Brownie" border="0"><br><b><p style="text-align: center;color: black;">SPECIAL BROWNIE</p></b></div>
+  <div class="col-md-1"></div>
+</div>
+</div>
+</div></div>
+<h1 style="text-align: center;height: 70px;">MAIN MENU</h1>
+      
+<div class="container fade-in" style="display: flex;">
+<div class="row" id="div">
+  <br>
+  <div class="col-md-3" class="imgage"><img style="height: 300px;width: 400px;" src="https://i.ibb.co/h81MqLR/bakery-Items.webp"  alt=""><br><b><p style="text-align: center;">BAKERY ITEMS</p></b></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-3" class="imgage"><img style="height: 300px;width: 400px;" src="https://i.ibb.co/gwQxxB5/Hot-Beverages-1.webp"  alt=""><br><b><p style="text-align: center;">HOT BEVERAGES</p></b></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-3" class="imgage"><img style="height: 300px;width: 350px;" src="https://i.ibb.co/tH74RqX/Main-Menu-Live-Chicken.webp" alt=""><br><B><p style="text-align: center;">LIVE KITCHEN</p></B></div>
+  <div class="col-md-1"></div>
+</div>
+</div>
+</div>
+
+<div class="fade-in" id=""><img style="height: 800px;width: 100%;" src="https://i.ibb.co/KbGXKWV/449412763-496236449594141-4865833023795556213-nlow-1.webp" alt=""></div>
+<div class="container-fluid" style="background-color:black ;">
+  <h1 style="text-align: center;color: white;">Second Cup Achievements</h1>
+  <div class=" row fade-in" id="">
+    <div class="col-md-3" style="background-color: white;margin-left: 20px;">
+     <h1 style="text-align: center;font-size: 80px;">30+</h1>
+     <br>
+     <b><p style="text-align: center;">Operating countries</p></b>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3" style="background-color: rgb(253, 25, 150);"><h1 style="text-align: center;font-size: 80px;">50+</h1><br><b><p style="text-align: center;">BRANCHES IN PAKISTAN</p></b></div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3" style="background-color: white;height: 200px;"><h1 style="text-align: center;font-size: 80px;">700+</h1><br><b><p style="text-align: center;">Branches world wide</p></b></div>
+      <div class="col-md-1"></div>
+      
+  </div>
+</div>
+<footer style="background-color: black;height: 70px;"></footer>
+<div class="container-fluid fade-in" style="background-color: ghostwhite;">
+  <div class="row">
+    <pre style="font-size: 40px;">WANT TO BE SECOND CUP
+ <span style="color: rgb(211, 32, 32);">FRANCHISE</span> PARTNER?</pre>
+      <pre>
+     <b>Make your <span style="color: red;">dream</span> of owing a <span style="color: red;">coffee</span> franchise come true with us!. Currently we are
+       operating in 12+ cities</pre></b> 
+      <div class="col-md-6"><img style="height: 400px;width: 400px;" src="https://i.ibb.co/bKqdq4j/Map-1-1024x946.webp"alt="Map-1-1024x946" border="0"></div>
+      <div class="div" style="height: 400px;">
+      <section id="container">
+
+        <section class="wrapper">
+        <div class="one"></div>
+        <div class="one1"></div>
+         <div class="one2"></div>
+         <div class="one3"></div>
+        <div class="one4"></div>
+         <div class="one5"></div>
+         <div class="one6"></div>
+        <div class="one7"></div>
+         <div class="one8"></div>
+        <div class="one9"></div>
+         <div class="one10"></div>
+         <div class="one11"></div>
+         <div class="one12"></div>
+         <div class="one13"></div>
+         <div class="one14"></div>
+         <div class="one15"></div>
+         <div class="one16"></div>
+         <div class="one17"></div>
+        <div class="one18"></div>
+        <div class="one19"></div>
+         <div class="one20"></div>
+         <div class="one21"></div>
+         <div class="one22"></div>
+         <div class="one23"></div>
+         <div class="one24"></div>
+         <div class="one25"></div>
+         <div class="one26"></div> 
+         <div class="one28"></div>
+         <div class="one29"></div>
+         <div class="one30"></div>
+        <div class="one31"></div>
+         <div class="one32"></div>
+        <div class="one33"></div>
+         <div class="one34"></div>
+         <div class="one35"></div>
+         <div class="one36"></div>
+         <div class="one37"></div>
+         <div class="one38"></div>
+         <div class="one39"></div>
+         <div class="one40"></div>
+         <div class="one41"></div>
+         <div class="one42"></div>
+         <div class="one43"></div>
+         <div class="one44"></div>
+        <div class="one45"></div>
+        <div class="one46"></div>
+         <div class="one47"></div>
+         <div class="one48"></div>
+        <div class="one49"></div>
+        </section>
+        </section></div>
+  </div>
+</div>
+<br>
+<br>
+<div style="background-color:  rgb(240, 198, 120);;">
+<div class="container-fluid fade-in" style="background-color:rgb(240, 198, 120);">
+  <div class="row">
+    <div class="col-md-2"><a href="https://www.instagram.com/reel/C-16PTtuCOd/">
+      <img style="height: 300px;" src="https://i.ibb.co/gtkWGN1/449104383-491865496697903-1404431661818416294-nlow.webp" alt="">
+    </a></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2"><a href="https://www.instagram.com/p/C-uL2rBJ2Bz/"><img style="height: 300px;width: 300px;" src="https://i.ibb.co/QDGdz6z/448974546-340830845574593-3802267408976816257-nlow.webp" alt=""></a></div>
+<div class="col-md-1">
+
+</div>
+<div class="col-md-2"><a href="https://www.instagram.com/p/C-pFl6ZIkDD/">
+  <img style="height: 300px;border: white;width: 300px;" src="https://i.ibb.co/qCcDBKz/download-4.jpg" alt="">
+</a></div>
+<div class="col-md-1"></div>
+<div class="col-md-2"><a href="https://www.instagram.com/p/C-XAqWWo5kB/"><img style="height: 300px;" src="https://i.ibb.co/DzQ2ZfN/453981157-517179490833170-2639018199220517547-nlow.webp" alt=""></a></div>
+  </div>
+
+</div>
+<div class="container-fluid fade-in" style="background-color:  rgb(240, 198, 120);;margin-top: 20px;">
+  <div class="row">
+    <div class="col-md-2"><a href="https://www.instagram.com/reel/C-n07Fsu7Pt/"><img style="height: 300px;width: 300px;" src="https://i.ibb.co/MB8JhLx/454741364-520373710513748-4149672667824461491-nlow.webp" alt=""></a></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-2"><a href="https://www.instagram.com/reel/C-kPe0RsUlw/"><img style="height: 300px;width: 300px;" src="https://i.ibb.co/kmXMYWs/455025344-1237241051051408-101610876340169136-nlow.webp" alt=""></a></div>
+  <div class="col-md-1">
+
+  </div>
+  <div class="col-md-2"><a href="https://www.instagram.com/p/C-gN8FrtkzB/"><img style="height: 300px;width: 300px;" src="https://i.ibb.co/FKVCrXB/455112090-520566957161090-616535280692809638-nlow.webp" alt=""></a></div>
+<div class="col-md-1"></div>
+<div class="col-md-2"><a href="https://www.instagram.com/p/C-CzHtdtSXn/"><img style="width: 300px;height: 300px;" src="https://i.ibb.co/HxbWWqS/453318958-513559374528515-224445025851913486-nlow.webp" alt=""></a></div>
+  
+  
+  </div>
+</div>
+<div class="container-fluid fade-in" style="padding-top: 20px;">
+  <div class="row">
+    <div class="col-md-2"><a href="https://www.instagram.com/p/C9UWqyhIjxb/"><img style="width: 300px;height: 300px;" src="https://i.ibb.co/7RbLjvT/450812485-502848242266295-5441278969366964651-nlow.webp" alt=""></a></div>
+<div class="col-md-1"></div>
+<div class="col-md-2"><a href="https://www.instagram.com/reel/C9KHDA1K5So/"><img style="height: 300px;width: 300px;" src="https://i.ibb.co/d5YJtGQ/450192109-348515501471984-5829791347589302887-nlow.webp" alt=""></a></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-2"><a href="https://www.instagram.com/p/C84OGxgIX2t/"><img style="height: 300px;width: 300px;" src="https://i.ibb.co/KL1T9rr/451494324-859985876028063-8840820657304657412-nlow.webp" alt=""></a></div>
+<div class="col-md-1"></div>
+<div class="col-md-2"><a href="https://www.instagram.com/p/C9zPg-uBpqi/"><img style="width: 300px;height: 300px;" src="https://i.ibb.co/qgsKz3Q/452910964-509912711559848-122196804791278369-nlow.webp" alt=""></a></div>
+</div>
+
+</div>
+</div>
+<br>
+
+
+<div style="height: 300px;background-color: rgb(240, 198, 120);">
+    <div style="margin-bottom: -30px;height: 200px;" class="fade-in">
+   <div class=" flex-column flex-sm-row justify-content-between py-4 my-4 border-top" style="background-color:  rgb(240, 198, 120);;height:180px;margin-bottom: -200px;">
+    <div class="container" style="display: flex;margin-left: 3px;">
+      <div style="margin-left: -10px;"><a href="https://play.google.com/store/apps/details?id=com.blink.secondcup&hl=en&gl=US&pli=1"><img style="height: 50px;" src="https://i.ibb.co/ncyzNN4/google-play-btn-300x89.webp" alt=""></a></div>
+      <div style="margin-left: 5px;"><a href="https://apps.apple.com/tt/app/second-cup-pakistan/id1593023736"><img style="height: 50px;" style="height: 90px;" src="https://i.ibb.co/fYz9F3N/apple-store-btn.webp" alt="">
+      </a></div>
+    </div>
+     <div style="margin-left: -20pxpx;"><ul class="list-unstyled d-flex" style="margin-top: -15px;height:; px;margin-bottom: px;margin-lef;50px">
+       <li class="ms-3"><a class="link-body-emphasis" href="https://www.instagram.com/reel/C-16PTtuCOd/" class="fa fa-instagram"><svg class="bi" width="24" height="24"><use xlink:href="https://www.instagram.com/reel/C-16PTtuCOd/" class="fa fa-instagram"></use></svg><a href="https://www.instagram.com/reel/C-16PTtuCOd/" class="fa fa-instagram"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg><a href="https://www.facebook.com/SecondCupPakistan" class="fa fa-facebook"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg><a href="https://www.youtube.com/@secondcuppakistan8607" class="fa fa-youtube"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg><a href="https://www.linkedin.com/company/second-cup-pakistan/?originalSubdomain=pk" class="fa fa-linkedin"></a></a></li>
+       <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg><a href="" class="fab fa-google-play"></a></a></li>
+     
+     </ul></div>
+     <p style="margin-left:5px ;">© 2024 Company, Inc. All rights reserved.</p>
+     </div>
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
